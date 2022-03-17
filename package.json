@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^5.0.0-beta1",
+    "electron-forge": "^5.2.4",
     "electron-is-dev": "^1.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -17,6 +18,7 @@
   "main": "public/main.js",
   "homepage": "./",
   "scripts": {
+    "dist": "yarn build && electron-builder",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -36,6 +38,14 @@
     ],
     "directories": {
       "buildResources": "assets"
+    },
+    "linux": {
+      "category": "Office",
+      "desktop": {
+        "Icon": "joplin",
+        "MimeType": "x-scheme-handler/joplin;"
+      },
+      "target": "AppImage"
     }
   },
   "eslintConfig": {
@@ -57,11 +67,12 @@
     ]
   },
   "devDependencies": {
-    "concurrently": "^5.3.0",
+    "concurrently": "^7.0.0",
     "cross-env": "^7.0.3",
     "electron": "^11.2.1",
     "electron-builder": "^22.9.1",
     "prettier": "^2.2.1",
-    "wait-on": "^5.2.1"
+    "wait-on": "^5.2.1",
+    "electron-build-compile": "^8.2.0"
   }
 }
