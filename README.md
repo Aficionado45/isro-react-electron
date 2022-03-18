@@ -3,6 +3,7 @@
 ## Requirements
 Python 3
 NodeJs
+Yarn
 
 ## Installation
  1. Clone the repo
@@ -12,20 +13,3 @@ NodeJs
 ## Run Project
 
 `yarn electron:serve`
-
-
- 
- 
-## Install the requirements
-## Run the project
-
-
-Python
-Nodejs
-Pip
-Yarn
-
-Electron
-
-Python NodeJS
-Yarn 

@@ -18,7 +18,7 @@ const CustomizedDot = (props) => {
         );
     }
     return (
-        <svg x={cx - 2} y={cy - 2} height="5" width="5">
+        <svg x={cx - 5} y={cy - 5} height="10" width="10">
             <circle r="40" stroke="black" strokeWidth="3" fill="red" />
         </svg>
     );
@@ -164,8 +164,8 @@ function Prediction() {
                 <UpperWrapper>
                     <AreaPlotWrapper>
                         <SwitchButtonWrapper>
-                            <MapTitle>Map 1</MapTitle>
-                            <MapChangeButton onClick={changeMapVisibility}>{map ? "Change to Flux" : "Change to Rate"}</MapChangeButton>
+                            <MapTitle>{map ? 'Rate vs Time' : 'Flux vs Time'}</MapTitle>
+                            {/* <MapChangeButton onClick={changeMapVisibility}>{map ? "Change to Flux" : "Change to Rate"}</MapChangeButton> */}
                         </SwitchButtonWrapper>
                         {lcload ? (<ResponsiveContainer>
                             <LineChart
@@ -180,7 +180,6 @@ function Prediction() {
                                 }}
                             >
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <CartesianGrid />
                                 <XAxis dataKey="x">
                                     <Label value="Time" fill="#F6C96F" offset={0} position="insideBottom" />
                                 </XAxis>
@@ -190,16 +189,16 @@ function Prediction() {
                             </LineChart>
                         </ResponsiveContainer>) : <p>Loading...</p>}
                     </AreaPlotWrapper>
-                    <InformationCard>
+                    {/* <InformationCard>
                         <InformationTitle>Information</InformationTitle>
-                    </InformationCard>
+                    </InformationCard> */}
                 </UpperWrapper>
                 <TableWrapper>
                     <FilterWrapper>
                         <FilterButton onClick={filterVisibility}>Filter</FilterButton>
                     </FilterWrapper>
                     <FilterOptions style={filter ? { display: 'flex' } : { display: 'none' }}>
-                        <BR>
+                        {/* <BR>
                             <div style={{ width: '100%', paddingTop: '25.69px', paddingBottom: '25.69px' }}>
                                 <p style={{ fontWeight: '500', fontSize: '24px', marginBottom: '23px' }}>Burst time</p>
                                 <MultiRangeSlider min={0} max={1000} onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)} />
@@ -218,7 +217,7 @@ function Prediction() {
                                 <p style={{ fontWeight: '500', fontSize: '24px', marginBottom: '23px' }}>Rise time</p>
                                 <MultiRangeSlider min={0} max={1000} onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)} />
                             </div>
-                        </DP>
+                        </DP> */}
                         <Classification>
                             <div style={{ width: '100%', paddingTop: '25.69px', paddingBottom: '25.69px', display: 'flex', flexDirection: 'column' }}>
                                 <p style={{ fontWeight: '500', fontSize: '24px', marginBottom: '23px' }}>Classification</p>
@@ -298,7 +297,7 @@ const AreaPlotWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items:  center;
-    width: 75%;
+    width: 100%;
     height: 550px;
     background: rgba(237, 237, 237, 0.2);
     padding: 36px 49px;
@@ -393,11 +392,12 @@ const FilterOptions = styled.div`
     display: flex;
     flex-direction: row;
     gap: 178px;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background: rgba(237, 237, 237, 0.3);
     margin-bottom: 77px;
     border-radius: 18.5px;
+    width: fit-content
 `
 
 const BR = styled.div`
