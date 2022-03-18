@@ -7,11 +7,11 @@ NodeJs
 ## Installation
  1. Clone the repo
  2. Install dependencies
- 'yarn install'
+ `yarn install`
 
 ## Run Project
 
-'yarn electron:serve'
+`yarn electron:serve`
 
 
  
