@@ -7,15 +7,16 @@ require('@electron/remote/main').initialize()
 
 function createWindow() {
   // Create the browser window.
+  //var subpy = require('child_process').spawn('python',['./app.py']);
   const win = new BrowserWindow({
     width: 1920,
     height: 1080, 
-    //icon: path.join(), 
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true
-    }
+    },
    
+
   })
 
   win.loadURL(
@@ -26,6 +27,8 @@ function createWindow() {
 }
 
 app.on('ready', createWindow)
+
+
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
