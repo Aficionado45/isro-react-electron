@@ -1,24 +1,19 @@
 import React from "react";
-import styled from "styled-components";
-import './Switch.css';
+import "./Switch.css";
 
-const Switch = () => {
-    return (
-        <>
-            <input
-                className="react-switch-checkbox"
-                id={`react-switch-new`}
-                type="checkbox"
-            />
-            <label
-                className="react-switch-label"
-                htmlFor={`react-switch-new`}
-            >
-                <span className={`react-switch-button`} />
-            </label>
-        </>
-    )
-}
+const ToggleSwitch = () => {
+return (
+	<div className="container">
+	<div className="toggle-switch">
+		<input type="checkbox" className="checkbox"
+			name='GraphChange' id='GraphChange' />
+		<label className="label" htmlFor='GraphChange'>
+		<span className="inner" />
+		<span className="switch" />
+		</label>
+	</div>
+	</div>
+);
+};
 
-export default Switch;
-
+export default ToggleSwitch;

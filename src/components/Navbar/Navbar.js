@@ -3,10 +3,11 @@ import styled from "styled-components";
 function Navbar() {
     return (
         <NavbarWrapper>
-            <Title>IIT Guwahati</Title>
+            <Title>Team 11</Title>
             <RightPart>
-                <a style={fontXL}>Home</a>
-                <a style={fontXL}>Input</a>
+                <a href="/" style={fontXL}>Home</a>
+                <a href="/input" style={fontXL}>Input</a>
+                <a href="/prediction" style={fontXL}>Output</a>
             </RightPart>
         </NavbarWrapper>
     );
@@ -35,5 +36,7 @@ const RightPart = styled.div`
 `
 
 const fontXL = {
-    fontSize: "36px"
+    fontSize: "36px",
+    textDecoration: "none",
+    color: '#fff',
 }
