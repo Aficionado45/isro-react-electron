@@ -1,5 +1,5 @@
 {
-  "name": "electron-react",
+  "name": "isro-light-curve-visualizer",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
