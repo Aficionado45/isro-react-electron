@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 function Table(props) {
   console.log(props);
-  console.log(Object.keys(props.props.Peak_Flux__x_).length);
+  // console.log(Object.keys(props.props.Peak_Flux__x_).length);
   var indents = [];
   for (
     var i = 0;
@@ -16,6 +16,7 @@ function Table(props) {
         <BurstStartY>{props.props.Peak_Flux__y_[`${i}`]}</BurstStartY>
         <BurstPeakX>{props.props.background_count_Flux_vs_Time[`${i}`]}</BurstPeakX>
         <BurstPeakY>{props.props.Classification_by_Flux_Peak[`${i}`]}</BurstPeakY>
+        <BurstPeakY>{props.props.Classification_by_Flux_Peak_By_Background_Count[`${i}`]}</BurstPeakY>
       </TableWrapper>
     );
   }
@@ -38,18 +39,22 @@ const TableWrapper = styled.div`
 `;
 
 const BurstStartX = styled.p`
+  width: 180px;
   font-size: 1rem;
 `;
 
 const BurstStartY = styled.p`
+  width: 180px;
   font-size: 1rem;
 `;
 
 const BurstPeakX = styled.p`
+  width: 180px;
   font-size: 1rem;
 `;
 
 const BurstPeakY = styled.p`
+  width: 180px;
   font-size: 1rem;
 `;
 

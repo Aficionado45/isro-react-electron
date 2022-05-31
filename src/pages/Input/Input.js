@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Navbar from "../../components/Navbar/Navbar";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import CloudComputing from './Octicons-cloud-upload.svg';
 
@@ -11,6 +11,7 @@ function Input() {
         setSelectedFile( selectedFile= event.target.files[0] );
     };
     function onFileUpload() {
+        changeUploadState(!uploadState);
         // Create an object of formData
         const formData = new FormData();
 
@@ -28,7 +29,7 @@ function Input() {
         //     changeUploadState(uploadState=true);
         //     console.log(uploadState)
         // })
-        fetch('http://172.20.10.2:8080/api/upload', 
+        fetch('https://interiit.us.to/api/upload',
             {
                 method: 'POST',
                 body: formData
@@ -60,12 +61,14 @@ function Input() {
                     <InputBox type='file' onChange={onFileChange} />
                     <CloudIcon src={CloudComputing}/>
                 </InputBoxWrapper>
-                <IconButtonWrapper>
+                {!uploadState ? <IconButtonWrapper>
                     <InputButton onClick={onFileUpload}>Upload</InputButton>
-                </IconButtonWrapper>
+                </IconButtonWrapper> : <IconButtonWrapper><InputButton disabled style={{cursor: "none"}}>Uploading...</InputButton></IconButtonWrapper>}
             </InputWrapper>
             <InputInfoWrapper>
-                File Format Support: FITS, XLS, ASCII
+                Upload zip file only!<br /><br />
+                File Format Support: FITS, XLS, ASCII<br /><br />
+                Estimated wait time: 30 - 60 seconds
             </InputInfoWrapper>
         </>
     )
@@ -142,3 +145,30 @@ const InputInfoWrapper = styled.div`
     padding: 30px;
     border-radius: 12px;
 `;
+
+const OverlaySpinner = styled.div`
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    z-index: 5;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(237, 237, 237, 0.2);
+`
+
+const spin = keyframes`
+    to { 
+        transform: rotate(360deg);
+    }
+`
+
+const Spinner = styled.div`
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: ${spin} 1s ease-in-out infinite;
+    /* -webkit-animation: spin 1s ease-in-out infinite; */
+`
