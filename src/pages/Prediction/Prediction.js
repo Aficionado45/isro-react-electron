@@ -48,16 +48,16 @@ function Prediction() {
     const lcdata = [];
     const fluxdata = [];
     useEffect(() => {
-        axios.get('https://interiit.us.to/api/data/lc').then(res => {
+        axios.get('http://localhost:8080/api/data/lc').then(res => {
             setlcLoad(JSON.parse(res.data));
         })
-        axios.get('https://interiit.us.to/api/data/flux').then(res => {
+        axios.get('http://localhost:8080/api/data/flux').then(res => {
             setfluxLoad(JSON.parse(res.data));
         })
-        axios.get('https://interiit.us.to/api/data/lcfull').then(res => {
+        axios.get('http://localhost:8080/api/data/lcfull').then(res => {
             setlcDatapoints(JSON.parse(res.data));
         })
-        axios.get('https://interiit.us.to/api/data/fluxfull').then(res => {
+        axios.get('http://localhost:8080/api/data/fluxfull').then(res => {
             setfluxDatapoints(JSON.parse(res.data));
         })
     }, [])
@@ -197,7 +197,7 @@ function Prediction() {
             
         }
     });
-    const windowWidth = window.innerWidth;
+
     return (
         <>
             <Navbar />
@@ -249,20 +249,6 @@ function Prediction() {
                                 <Line type="monotone" dataKey="y" stroke="#FFCA00" dot={<CustomizedDot />} />
                             </LineChart>
                         </ResponsiveContainer>)) : <p>Loading...</p>}
-                        {map ? <div style={{display: 'flex', flexDirection: 'row', gap: '10px', alignItems: 'center'}}>
-                            <svg height="10" width="10">
-                            <circle r="40" stroke="black" strokeWidth="3" fill="blue" />
-                            </svg><p>Start coordinate</p>
-                            
-                            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd">
-                            <path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z" fill="#FFCA00" />
-                            </svg><p>Peak coordinate</p>
-                            
-                            <svg height="10" width="10">
-                            <circle r="40" stroke="black" strokeWidth="3" fill="red" />
-                            </svg><p>End coordinate</p>
-                            
-                        </div> : null}
                     </AreaPlotWrapper>
                     {/* <InformationCard>
                         <InformationTitle>Information</InformationTitle>
@@ -348,29 +334,24 @@ function Prediction() {
                         <p style={{ color: '#F6C96F' }}>Decay time</p>
                     </TableMenu>)} */}
                     <MapTitle>Rate vs Time</MapTitle>
-                    <TableMenuWrapper style={{ width: `${windowWidth}`}}>
-                    <TableMenu style={{marginTop: '16px', width: 'fit-content'}}>
-                        <p style={{ color: '#F6C96F', width: '150px' }}>Burst start coordinate (x)</p>
-                        <p style={{ color: '#F6C96F', width: '150px' }}>Burst start coordinate (y)</p>
-                        <p style={{ color: '#F6C96F', width: '150px' }}>Burst peak coordinate (x)</p>
-                        <p style={{ color: '#F6C96F', width: '150px' }}>Burst peak coordinate (y)</p>
-                        <p style={{ color: '#F6C96F', width: '150px' }}>Burst end coordinate (x)</p>
-                        <p style={{ color: '#F6C96F', width: '150px' }}>Burst end coordinate (y)</p>
-                        <p style={{ color: '#F6C96F', width: '150px' }}>Total burst time</p>
-                        <p style={{ color: '#F6C96F', width: '150px' }}>Rise time</p>
-                        <p style={{ color: '#F6C96F', width: '150px' }}>Decay time</p>
-                        <p style={{ color: '#F6C96F', width: '150px' }}>Classification by Area</p>
-                        <p style={{ color: '#F6C96F', width: '150px' }}>Classification by Duration</p>
+                    <TableMenu style={{marginTop: '16px'}}>
+                        <p style={{ color: '#F6C96F' }}>Burst start coordinate (x)</p>
+                        <p style={{ color: '#F6C96F' }}>Burst start coordinate (y)</p>
+                        <p style={{ color: '#F6C96F' }}>Burst peak coordinate (x)</p>
+                        <p style={{ color: '#F6C96F' }}>Burst peak coordinate (y)</p>
+                        <p style={{ color: '#F6C96F' }}>Burst end coordinate (x)</p>
+                        <p style={{ color: '#F6C96F' }}>Burst end coordinate (y)</p>
+                        <p style={{ color: '#F6C96F' }}>Total burst time</p>
+                        <p style={{ color: '#F6C96F' }}>Rise time</p>
+                        <p style={{ color: '#F6C96F' }}>Decay time</p>
                     </TableMenu>
                     {lcload ? <LCTable props={lcload} /> : <p>Loading...</p>}
-                    </TableMenuWrapper>
                     <MapTitle style={{marginTop: '32px'}}>Flux vs Time</MapTitle>
                     <TableMenu style={{marginTop: '16px'}}>
-                        <p style={{ color: '#F6C96F', width: '180px' }}>Peak flux coordinate (x)</p>
-                        <p style={{ color: '#F6C96F', width: '180px' }}>Peak flux coordinate (y)</p>
-                        <p style={{ color: '#F6C96F', width: '180px' }}>Background Count</p>
-                        <p style={{ color: '#F6C96F', width: '180px' }}>Classification by peak flux</p>
-                        <p style={{ color: '#F6C96F', width: '180px' }}>Classification by Flux Peak by Background Count</p>
+                        <p style={{ color: '#F6C96F' }}>Peak flux coordinate (x)</p>
+                        <p style={{ color: '#F6C96F' }}>Peak flux coordinate (y)</p>
+                        <p style={{ color: '#F6C96F' }}>Peak flux/ average ratio</p>
+                        <p style={{ color: '#F6C96F' }}>Category by peak flux</p>
                     </TableMenu>
                     {fluxload ? <FluxTable props={fluxload} /> : <p>Loading...</p>}
                     {/* {lcload ? <p>{lcload.start_coordinate__x_['0']}</p> : <p>Loading...</p>} */}
@@ -535,23 +516,4 @@ const MapChangeButton = styled.button`
     &:hover {
         background: #F6C96Fe1;
     }
-`
-
-const TableMenuWrapper = styled.div`
-    overflow-x: scroll;
-    /* padding: 26px 36px; */
-    border-radius: 12px;
-    margin-bottom: 12px;
-`
-
-const RateVsTime =  styled.div`
-    background: rgba(237, 237, 237, 0.3);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 63px;
-    padding: 26px 36px;
-    border-radius: 12px;
-    /* margin-bottom: 12px; */
 `
